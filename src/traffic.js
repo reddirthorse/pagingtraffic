@@ -3,10 +3,10 @@ import axios from "axios";
 
 function GetTraffic(props){
     const [isLoading,setLoading] = useState('true')
-    const [start,setStart] = useState('101');
-    const [end,setEnd] = useState('115');
+    // const [start,setStart] = useState(props.start);
+    // const [end,setEnd] = useState('115');
     const [trafficData,setTrafficData] = useState([])
-    const url = `http://data.ex.co.kr/openapi/odhour/trafficTimeByRoute?key=6844121548&type=json&startUnitCode=${start}&endUnitCode=${end}`
+    const url = `http://data.ex.co.kr/openapi/odhour/trafficTimeByRoute?key=6844121548&type=json&startUnitCode=${props.start[0]}&endUnitCode=${props.end[0]}`
     
     function timeCal(t){
         let minutes = 0;
@@ -27,9 +27,12 @@ function GetTraffic(props){
            const res = await axios.get(url);
            const data = res.data.list
            setTrafficData(data)
+           console.log(`res:${res}`)
+           console.log(res)
            console.log(data)}
+
            getTraffic().then(setLoading('false'))
-           
+           console.log(props)
        }catch{
          console.log('err')
        }
@@ -38,9 +41,9 @@ function GetTraffic(props){
     
      return(
         <div>
+             
         {
-        trafficData
-        .filter((d)=>d.startUnitCode ===`${start} ` && d.endUnitCode ===`${end} ` && d.carType ==='1')
+        trafficData.filter((d)=>d.startUnitCode ===`${props.start[0]} ` && d.endUnitCode ===`${props.end[0]} ` && d.carType ==='1')
         .map((d,cnt)=>{
             return(
             <div className = "traffic">
