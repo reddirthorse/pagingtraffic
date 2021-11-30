@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 
- function GetMultiTraffic(props){
+ const GetMultiTraffic = (props)=>{
     const [dataSumList,setDataSumList] = useState([])
     // let dataList = []
     // let dataSumList = []
@@ -76,4 +76,4 @@ import axios from "axios";
      </div>
  )
 }
-export default GetMultiTraffic
+export {GetMultiTraffic}

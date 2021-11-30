@@ -10,4 +10,4 @@ const Input = ({name,type,placeholder,onChange}) =>{
         
     )
 }
-export default Input;
+export {Input};

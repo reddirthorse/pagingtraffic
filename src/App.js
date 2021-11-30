@@ -2,8 +2,8 @@ import './App.css';
 import { useState,useEffect } from 'react';
 import GetTraffic from './traffic';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Input from './input';
-import GetMultiTraffic from './multiTraffic';
+import {Input} from './input';
+import {GetMultiTraffic} from './multiTraffic';
 
 function App() {
   const [inputs,setInputs] = useState({
