@@ -5,7 +5,7 @@ import axios from "axios";
     const [dataSumList,setDataSumList] = useState([])
     // let dataList = []
     // let dataSumList = []
-    let i=0;
+ 
     console.log(props)
 
     function timeCal(t){
@@ -23,45 +23,72 @@ import axios from "axios";
     }
 
 
-    useEffect( async()=>{
-        console.log(props)
-        const { start, end } = props
-        let tempDataList = []
-        let sumTimeAvg = 0
-        let sumTimeMax = 0
-        let sumTimeMin = 0
-        try{ 
-            for (let i=0;i<start.length;i++){
-                const data = await axios.get(`http://data.ex.co.kr/openapi/odhour/trafficTimeByRoute?key=6844121548&type=json&startUnitCode=${start[i]}&endUnitCode=${end[i]}`)
+    // useEffect( async()=>{
+    //     console.log(props)
+    //     const { start, end } = props
+    //     let tempDataList = []
+    //     let sumTimeAvg = 0
+    //     let sumTimeMax = 0
+    //     let sumTimeMin = 0
+    //     try{ 
+    //         for (let i=0;i<start.length;i++){
+    //             const data = await axios.get(`http://data.ex.co.kr/openapi/odhour/trafficTimeByRoute?key=6844121548&type=json&startUnitCode=${start[i]}&endUnitCode=${end[i]}`)
                 
-                console.log(i,data)
-                const {list} = data.data
-                console.log(list)
+    //             console.log(i,data)
+    //             const {list} = data.data
+    //             console.log(list)
                 
-                for (let j = 0; j<list.length; j++) {
-                    if(list[j].startUnitCode ===`${start[i]} `&&list[j].endUnitCode ===`${end[i]} `&&list[j].carType ==='1'){
-                        tempDataList.push({'carType':list[j].carType,'startUnitCode':list[j].startUnitCode,'endUnitCode':list[j].endUnitCode,'timeAvg':list[j].timeAvg,'timeMax':list[j].timeMax,'timeMin':list[j].timeMin,'sumTm':list[j].sumTm});
-                    }
-                }
-             }
-             for (let j = 0; j < tempDataList.length;j++){
-                sumTimeAvg = sumTimeAvg + parseInt(tempDataList[j].timeAvg)
-                sumTimeMax = sumTimeMax + parseInt(tempDataList[j].timeMax)
-                sumTimeMin = sumTimeMin + parseInt(tempDataList[j].timeMin)
-            }
+    //             for (let j = 0; j<list.length; j++) {
+    //                 if(list[j].startUnitCode ===`${start[i]} `&&list[j].endUnitCode ===`${end[i]} `&&list[j].carType ==='1'){
+    //                     tempDataList.push({'carType':list[j].carType,'startUnitCode':list[j].startUnitCode,'endUnitCode':list[j].endUnitCode,'timeAvg':list[j].timeAvg,'timeMax':list[j].timeMax,'timeMin':list[j].timeMin,'sumTm':list[j].sumTm});
+    //                 }
+    //             }
+    //          }
+    //          for (let j = 0; j < tempDataList.length;j++){
+    //             sumTimeAvg = sumTimeAvg + parseInt(tempDataList[j].timeAvg)
+    //             sumTimeMax = sumTimeMax + parseInt(tempDataList[j].timeMax)
+    //             sumTimeMin = sumTimeMin + parseInt(tempDataList[j].timeMin)
+    //         }
 
-            // async function getTraffics(){
-            // const res = await axios.all(url);
-            // console.log(res);
-            setDataSumList([sumTimeAvg,sumTimeMax,sumTimeMin])
-            console.log(dataSumList)
-            console.log(sumTimeMin)
-        }
+    //         // async function getTraffics(){
+    //         // const res = await axios.all(url);
+    //         // console.log(res);
+    //         setDataSumList([sumTimeAvg,sumTimeMax,sumTimeMin])
+    //         console.log(dataSumList)
+    //         console.log(sumTimeMin)
+    //     }
         
         // getTraffics()
+useEffect( () =>{
+    const { start, end } = props
+    let tempDataList = []
+    let sumTimeAvg = 0
+    let sumTimeMax = 0
+    let sumTimeMin = 0
+    try{
+        async function getTraffics(){
+        for (let i=0;i<start.length;i++){
+            const data = await axios.get(`http://data.ex.co.kr/openapi/odhour/trafficTimeByRoute?key=6844121548&type=json&startUnitCode=${start[i]}&endUnitCode=${end[i]}`)
+            const {list} = data.data
+            for (let j = 0; j<list.length; j++) {
+                if(list[j].startUnitCode ===`${start[i]} `&&list[j].endUnitCode ===`${end[i]} `&&list[j].carType ==='1'){
+                    tempDataList.push({'carType':list[j].carType,'startUnitCode':list[j].startUnitCode,'endUnitCode':list[j].endUnitCode,'timeAvg':list[j].timeAvg,'timeMax':list[j].timeMax,'timeMin':list[j].timeMin,'sumTm':list[j].sumTm});
+                }
+            }
+            }
+        for (let j = 0; j < tempDataList.length;j++){
+            sumTimeAvg = sumTimeAvg + parseInt(tempDataList[j].timeAvg)
+            sumTimeMax = sumTimeMax + parseInt(tempDataList[j].timeMax)
+            sumTimeMin = sumTimeMin + parseInt(tempDataList[j].timeMin)
+        }
+        setDataSumList([sumTimeAvg,sumTimeMax,sumTimeMin])
+        }
+        getTraffics()
+        }
     catch(e){
             console.log('err')
           }
+
         },[props])
 
         console.log(dataSumList)

@@ -1,6 +1,6 @@
 import './App.css';
 import { useState,useEffect } from 'react';
-import GetTraffic from './traffic';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Input} from './input';
 import {GetMultiTraffic} from './multiTraffic';
@@ -80,15 +80,10 @@ function App() {
     //광주 관련 도로 시작
 
     //광주 관련 도로 종료
-    console.log(start)
-    console.log(end)
+ 
     
-  },[inputs])
-  console.log(inputs)
-  console.log(startCity)
-  console.log(endCity)
-  console.log(start)
-  console.log(end)
+  },[startCity,endCity])
+
   return(
     <div>
       <Input name = 'startCity' type = 'text' placeholder ='' onChange = {handleChange}></Input>
