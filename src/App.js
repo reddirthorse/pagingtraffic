@@ -85,7 +85,33 @@ function App() {
     }
     //경부 고속도로 상행선 종료
     //광주 관련 도로 시작
+    //상행선 시작
+    else if (startCity ==='서울' && endCity ==='광주'){
+      setStartList({code:['101','612','608'],name:['서울','풍세하','남논산']})
+      setEndList({code:['108','608','167'],name:['천안','남논산','광주']})
+    }
+    else if (startCity ==='대전' && endCity ==='광주'){
+      setStartList({code:['152','608'],name:['대전','남논산']})
+      setEndList({code:['155','167'],name:['논산','광주']})
+    }
+    //상행선 종료
+    //하행선 시작
+    else if (startCity ==='광주' && endCity ==='서울'){
+      setStartList({code:['101','612','608'],name:['서울','풍세하','남논산']})
+      setEndList({code:['108','608','167'],name:['천안','남논산','광주']})
+      //광주서 서울로 가는 건 데이터가 없음 걍 똑같이 두겠음
+    }
+    else if (startCity ==='광주' && endCity ==='대전'){
+      setStartList({code:['152','608'],name:['대전','남논산']})
+      setEndList({code:['155','167'],name:['논산','광주']})
+      //광주서 대전로 가는 건 데이터가 없음 걍 똑같이 두겠음
+    }
+    else if (startCity ==='대구' && endCity ==='광주'){
+      setStartList({code:['101','612','608'],name:['서울','풍세하','남논산']})
+      setEndList({code:['108','608','167'],name:['천안','남논산','광주']})
+    }
 
+    //하생선 종료
     //광주 관련 도로 종료
  
     
