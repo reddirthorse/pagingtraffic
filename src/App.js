@@ -10,8 +10,14 @@ function App() {
     startCity:'',
     endCity:''
   })
-  const [start,setStart] = useState([]);
-  const [end,setEnd] = useState([])
+  const [start,setStart] = useState({
+    code:[],
+    name:[]
+  });
+  const [end,setEnd] = useState({
+    code:[],
+    name:[]
+  })
 
 
   const {startCity, endCity} = inputs;
@@ -28,53 +34,54 @@ function App() {
   useEffect(() =>{
     //경부 고속도로 하행선 시작
     if (startCity ==='서울' && endCity ==='대전'){
-      setStart(['101'])
-      setEnd(['115'])
+      setStart({code:['101'],name:['서울']})
+      setEnd({code:['115'],name:['대전']})
     }
     else if(startCity ==='서울' && endCity ==='대구'){
-      setStart(['101'])
-      setEnd(['129'])
+      setStart({code:['101'],name:['서울']})
+      setEnd({code:['129'],name:['북대구']})
     }
     else if(startCity ==='서울' && endCity ==='부산'){
-      setStart(['101','129','131','133'])
-      setEnd(['129','131','133','140'])
+      setStart({code:['101','129','131','133'],name:['서울','북대구','경산','건천']})
+      setEnd({code:['129','131','133','140'],name:['북대구','경산','건천','부산']})
+
     }else if(startCity ==='대전' && endCity ==='대구'){
-      setStart(['115'])
-      setEnd(['129'])
+      setStart({code:['115'],name:['대전']})
+      setEnd({code:['129'],name:['북대구']})
     }
     else if(startCity ==='대전' && endCity ==='부산'){
-      setStart(['115','129','131','133'])
-      setEnd(['129','131','133','140'])
+      setStart({code:['115','129','131','133'],name:['대전','북대구','경산','건천']})
+      setEnd({code:['129','131','133','140'],name:['북대구','경산','건천','부산']})
     }
     else if(startCity ==='대구' && endCity ==='부산'){
-      setStart(['131','133'])
-      setEnd(['133','140'])
+      setStart({code:['131','133'],name:['경산','건천']})
+      setEnd({code:['133','140'],name:['건천','부산']})
     }
     //경부 고속 도로 하행선 종료
     //경부 고속도로 상행선 시작
     else if (startCity ==='부산' && endCity ==='대구'){
-      setStart(['133','140'])
-      setEnd(['131','133'])
+      setStart({code:['140','133'],name:['부산','건천']})
+      setEnd({code:['133','131'],name:['건천','경산']})
     }
     else if (startCity ==='부산' && endCity ==='대전'){
-      setStart(['123','131','133','140'])
-      setEnd(['115','123','131','133'])
+      setStart({code:['140','133','131','129'],name:['부산','건천','경산','북대구']})
+      setEnd({code:['133','131','129','115'],name:['건천','경산','북대구','대전']})
     }
     else if (startCity ==='부산' && endCity ==='서울'){
-      setStart(['123','131','133','140'])
-      setEnd(['101','123','131','133'])
+      setStart({code:['140','133','131','129'],name:['부산','건천','경산','북대구']})
+      setEnd({code:['133','131','129','101'],name:['건천','경산','북대구','서울']})
     }
     else if (startCity ==='대구' && endCity ==='대전'){
-      setStart(['123'])
-      setEnd(['115'])
+      setStart({code:['129'],name:['북대구']})
+      setEnd({code:['115'],name:['대전']})
     }
     else if (startCity ==='대구' && endCity ==='서울'){
-      setStart(['123'])
-      setEnd(['101'])
+      setStart({code:['129'],name:['대구']})
+      setEnd({code:['101'],name:['서울']})
     }
     else if (startCity ==='대전' && endCity ==='서울'){
-      setStart(['115'])
-      setEnd(['101'])
+      setStart({code:['115'],name:['대전']})
+      setEnd({code:['101'],name:['서울']})
     }
     //경부 고속도로 상행선 종료
     //광주 관련 도로 시작
