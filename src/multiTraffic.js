@@ -4,8 +4,8 @@ import axios from "axios";
 
  const GetMultiTraffic = (props)=>{
     const [dataSumList,setDataSumList] = useState([])
-    const [nameSumList,setNameSumList] = useState([])
-    const [louteDataList,setLouteDataList] = useState([])
+    // const [nameSumList,setNameSumList] = useState([])
+    // const [louteDataList,setLouteDataList] = useState([])
     // let dataList = []
     // let dataSumList = []
  
