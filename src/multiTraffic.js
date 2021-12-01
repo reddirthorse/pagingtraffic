@@ -68,7 +68,7 @@ useEffect( () =>{
         <div className = "row">
             <div className = "col border">
                 <div class="row">
-                    <p class="text-start fs-1 text-muted">{props.startCity}</p>
+                    <p class="text-center fs-1 text-muted">{props.startCity}</p>
                     </div>
                     <div class="row">
                         <p>&nbsp;</p>
@@ -78,7 +78,7 @@ useEffect( () =>{
                         <p>&nbsp;</p>
                     </div>
                     <div class="row">
-                        <p class="text-start fs-1 text-muted">{props.endCity}</p>
+                        <p class="text-center fs-1 text-muted">{props.endCity}</p>
                     </div>
             </div>
             <div className = "col-8">
@@ -101,6 +101,11 @@ useEffect( () =>{
         </div>
         <div className = "col border">
             <p className = "text-center text-muted fs-6">경부고속</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p className = "text-center text-muted fs-6">좋은 여행 되세요</p>
         </div>
         </div>
  
